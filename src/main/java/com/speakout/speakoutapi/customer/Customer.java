@@ -3,7 +3,7 @@ package com.speakout.speakoutapi.customer;
 import com.speakout.speakoutapi.base_entity.BaseEntity;
 import com.speakout.speakoutapi.comment.Comment;
 import com.speakout.speakoutapi.post.Post;
-import com.speakout.speakoutapi.user.User;
+import com.speakout.speakoutapi.user.ApplicationUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Customer extends BaseEntity {
     @OneToOne
-    private User user;
+    private ApplicationUser applicationUser;
     private String username;
     @OneToMany(mappedBy = "author")
     private List<Post> posts;

@@ -2,6 +2,8 @@ package com.speakout.speakoutapi.user;
 
 
 import com.speakout.speakoutapi.base_entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,7 +11,9 @@ import javax.persistence.Entity;
 import java.util.Collection;
 
 @Entity
-public class User extends BaseEntity implements UserDetails {
+@Getter
+@Setter
+public class ApplicationUser extends BaseEntity implements UserDetails {
     private String password;
     private String email;
     private boolean accountNonExpired;

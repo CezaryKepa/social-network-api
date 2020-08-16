@@ -2,8 +2,7 @@ package com.speakout.speakoutapi.user;
 
 
 import com.speakout.speakoutapi.base_entity.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import com.speakout.speakoutapi.security.UserDetailsServiceImpl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,17 +19,16 @@ public class ApplicationUser extends BaseEntity implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(	name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //TODO customservice
-        return null;
+        return UserDetailsServiceImpl.convertAuthorities(roles);
     }
 
     @Override
@@ -46,6 +44,14 @@ public class ApplicationUser extends BaseEntity implements UserDetails {
     @Override
     public boolean isAccountNonExpired() {
         return accountNonExpired;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.speakout.speakoutapi.security;
+package com.speakout.speakoutapi.security.jwt;
 
 import com.auth0.jwt.JWT;
 

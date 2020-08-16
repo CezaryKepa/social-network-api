@@ -2,7 +2,7 @@ package com.speakout.speakoutapi.security;
 
 import com.speakout.speakoutapi.user.ApplicationUser;
 import com.speakout.speakoutapi.user.ApplicationUserRepository;
-import com.speakout.speakoutapi.user.Role;
+import com.speakout.speakoutapi.role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Collections.emptyList;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,10 +27,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<ApplicationUser> applicationUser = applicationUserRepository.findByEmail(username);
-        if (applicationUser.isEmpty()) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new User(applicationUser.get().getUsername(), applicationUser.get().getPassword(), emptyList());
+
+        ApplicationUser user = applicationUser.orElseThrow(() -> new UsernameNotFoundException(username));
+        return new User(user.getUsername(), 
+                        user.getPassword(),
+                        user.isEnabled(),
+                        user.isAccountNonExpired(), 
+                        user.isCredentialsNonExpired(), 
+                        user.isAccountNonLocked(),
+                        user.getAuthorities());
     }
 
     public static Set<GrantedAuthority> convertAuthorities(Set<Role> userRoles) {

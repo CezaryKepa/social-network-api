@@ -2,7 +2,7 @@ package com.speakout.speakoutapi.security;
 
 import com.speakout.speakoutapi.user.ApplicationUser;
 import com.speakout.speakoutapi.user.ApplicationUserRepository;
-import com.speakout.speakoutapi.role.Role;
+import com.speakout.speakoutapi.user_role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

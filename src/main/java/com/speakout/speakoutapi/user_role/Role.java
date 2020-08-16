@@ -1,4 +1,4 @@
-package com.speakout.speakoutapi.role;
+package com.speakout.speakoutapi.user_role;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

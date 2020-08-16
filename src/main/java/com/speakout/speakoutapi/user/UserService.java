@@ -1,8 +1,8 @@
 package com.speakout.speakoutapi.user;
 
-import com.speakout.speakoutapi.role.Role;
-import com.speakout.speakoutapi.role.RoleEnum;
-import com.speakout.speakoutapi.role.RoleRepository;
+import com.speakout.speakoutapi.user_role.Role;
+import com.speakout.speakoutapi.user_role.RoleEnum;
+import com.speakout.speakoutapi.user_role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

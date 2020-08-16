@@ -1,4 +1,4 @@
-package com.speakout.speakoutapi.role;
+package com.speakout.speakoutapi.user_role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

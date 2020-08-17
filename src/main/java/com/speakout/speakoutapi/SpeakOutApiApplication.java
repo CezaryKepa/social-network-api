@@ -1,5 +1,6 @@
 package com.speakout.speakoutapi;
 
+import com.speakout.speakoutapi.customer.CustomerMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,4 +16,5 @@ public class SpeakOutApiApplication {
     public BCryptPasswordEncoder getPasswordEncoder(){
         return  new BCryptPasswordEncoder();
     }
+
 }

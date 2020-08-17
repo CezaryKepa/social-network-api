@@ -8,10 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,4 +25,9 @@ public class Customer extends BaseEntity {
     private List<Post> posts;
     @OneToMany(mappedBy = "author")
     private List<Comment> comments;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(	name = "user_observers",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "observer_id"))
+    private Set<Customer> observers = new HashSet<>();
 }

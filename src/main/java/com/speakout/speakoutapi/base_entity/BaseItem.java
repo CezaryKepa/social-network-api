@@ -24,12 +24,4 @@ public class BaseItem {
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt = null;
 
-    public BaseItem(Long id, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public BaseItem() {
-    }
 }

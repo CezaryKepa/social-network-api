@@ -20,15 +20,13 @@ public class CustomerDto extends BaseItem {
     private Set<Customer> observers;
 
     @Builder
-    public CustomerDto(Long id, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate, String username,
+    public CustomerDto(Long id, OffsetDateTime createdAt, OffsetDateTime updatedAt, String username,
                        List<Post> posts, List<Comment> comments, Set<Customer> observers) {
-        super(id, createdDate, lastModifiedDate);
+        super(id, createdAt, updatedAt);
         this.username=username;
         this.posts=posts;
         this.comments=comments;
         this.observers=observers;
     }
 
-    public CustomerDto() {
-    }
 }

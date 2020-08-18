@@ -17,11 +17,11 @@ public class CustomerDto extends BaseItem {
     private String username;
     private List<Post> posts;
     private List<Comment> comments;
-    private Set<Customer> observers;
+    private Set<CustomerDto> observers;
 
     @Builder
     public CustomerDto(Long id, OffsetDateTime createdAt, OffsetDateTime updatedAt, String username,
-                       List<Post> posts, List<Comment> comments, Set<Customer> observers) {
+                       List<Post> posts, List<Comment> comments, Set<CustomerDto> observers) {
         super(id, createdAt, updatedAt);
         this.username=username;
         this.posts=posts;

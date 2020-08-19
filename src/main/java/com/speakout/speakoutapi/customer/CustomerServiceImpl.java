@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDto> getAllObserversForCustomer(String username) {
         Optional<Customer> customer = customerRepository.findByUsername(username);
         Customer customerEntity = customer.orElseThrow(CustomerNotFoundException::new);
-        Set<Customer> observers = customerEntity.getObservers();
+        Set<Customer> observers = customerEntity.getObserved();
         return observers
                 .stream()
                 .map(customerMapper::customerToCustomerDto)

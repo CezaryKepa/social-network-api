@@ -38,7 +38,7 @@ class CustomerServiceImplTest {
         observers.add(Customer.builder().username("test2").build());
         Customer customer = Customer.builder()
                 .username("username")
-                .observers(observers)
+                .observed(observers)
                 .build();
         given(customerRepository.findByUsername("username")).willReturn(Optional.of(customer));
 
@@ -55,7 +55,27 @@ class CustomerServiceImplTest {
                 .isEqualTo(customerDtoList);
     }
 
-    @Test
-    void getAllObservedForCustomer() {
-    }
+
+
+//    @Test
+//    void getAllObservedForCustomer() {
+//        //given
+//        Set<Customer> observers = new HashSet<>();
+//        observers.add(Customer.builder().username("test1").build());
+//        observers.add(Customer.builder().username("test2").build());
+//        given(customerRepository.findAllObservedForUsername("username")).willReturn(observers);
+//
+//
+//        //when
+//        List<CustomerDto> customerDtoList = customerService.getAllObserversForCustomer("username");
+//
+//        //then
+//        then(customerRepository).should().findAllObservedForUsername("username");
+//
+//        assertThat(observers
+//                .stream()
+//                .map(customerMapper::customerToCustomerDto)
+//                .collect(Collectors.toList()))
+//                .isEqualTo(customerDtoList);
+//    }
 }

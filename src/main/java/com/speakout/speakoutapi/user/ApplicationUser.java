@@ -2,6 +2,7 @@ package com.speakout.speakoutapi.user;
 
 
 import com.speakout.speakoutapi.base_entity.BaseEntity;
+import com.speakout.speakoutapi.customer.Customer;
 import com.speakout.speakoutapi.user_role.Role;
 import com.speakout.speakoutapi.security.UserDetailsServiceImpl;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +26,8 @@ public class ApplicationUser extends BaseEntity implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    @OneToOne(mappedBy = "applicationUser")
+    private Customer customer;
 
 
     @Override
@@ -96,5 +99,13 @@ public class ApplicationUser extends BaseEntity implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

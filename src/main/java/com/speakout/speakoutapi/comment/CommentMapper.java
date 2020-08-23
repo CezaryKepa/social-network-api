@@ -1,4 +1,4 @@
-package com.speakout.speakoutapi.post;
+package com.speakout.speakoutapi.comment;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -9,12 +9,10 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface PostMapper {
-
+public interface CommentMapper {
     @Mapping(source = "author.id", target = "authorId")
-    PostDto postToPostDto(Post post);
-
-    Post postDtoToPost(PostDto postDto);
+    CommentDto commentToCommentDto(Comment comment);
+    Comment commentDtoToComment(CommentDto commentDto);
 
     default OffsetDateTime toOffset(Timestamp value){
         if (value != null){
@@ -34,5 +32,4 @@ public interface PostMapper {
             return null;
         }
     }
-
 }

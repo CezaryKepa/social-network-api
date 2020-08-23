@@ -19,6 +19,7 @@ public class Comment extends BaseEntity {
     private Post post;
     @ManyToOne
     private Customer author;
+    private String content;
     private Integer likes;
 
 }

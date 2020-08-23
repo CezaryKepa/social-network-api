@@ -1,8 +1,6 @@
 package com.speakout.speakoutapi.base_entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,6 +11,8 @@ import java.sql.Timestamp;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @MappedSuperclass
 public class BaseEntity {
     @Id

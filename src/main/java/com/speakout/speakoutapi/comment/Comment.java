@@ -3,9 +3,7 @@ package com.speakout.speakoutapi.comment;
 import com.speakout.speakoutapi.base_entity.BaseEntity;
 import com.speakout.speakoutapi.post.Post;
 import com.speakout.speakoutapi.customer.Customer;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Comment extends BaseEntity {
     @ManyToOne

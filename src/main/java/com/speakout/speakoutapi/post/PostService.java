@@ -6,4 +6,5 @@ public interface PostService {
     PostDto save(PostDto postDto);
     PostDto update(PostDto postDto);
     PostDto addComment(CommentDto commentDto);
+    PostDto likePost(Long postId);
 }

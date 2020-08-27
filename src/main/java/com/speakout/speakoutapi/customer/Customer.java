@@ -25,6 +25,8 @@ public class Customer extends BaseEntity {
     private List<Post> posts;
     @OneToMany(mappedBy = "author")
     private List<Comment> comments;
+    @ManyToOne
+    private Post post;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "user_observers",
             joinColumns = @JoinColumn(name = "observer_id"),

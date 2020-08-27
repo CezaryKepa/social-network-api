@@ -7,4 +7,5 @@ public interface CustomerService {
     List<CustomerDto> getAllObservedForCustomer(String username);
     List<CustomerDto> startObservingCustomer(String username);
     List<CustomerDto> stopObservingCustomer(String username);
+    Customer getAuthenticatedCustomer();
 }

@@ -70,7 +70,8 @@ public class CustomerServiceImpl implements CustomerService {
         return mapCustomerSetToCustomerDTOList(observedCustomers);
     }
 
-    private Customer getAuthenticatedCustomer(){
+    @Override
+    public Customer getAuthenticatedCustomer(){
         String principal = (String) SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
         Optional<ApplicationUser> user = userRepository.findByEmail(principal);
         ApplicationUser userEntity = user.orElseThrow(UserNotFoundException::new);

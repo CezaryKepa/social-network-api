@@ -6,6 +6,8 @@ import com.speakout.speakoutapi.comment.CommentService;
 import com.speakout.speakoutapi.customer.Customer;
 import com.speakout.speakoutapi.customer.CustomerDto;
 import com.speakout.speakoutapi.customer.CustomerMapper;
+import com.speakout.speakoutapi.customer.CustomerService;
+import com.speakout.speakoutapi.user.ApplicationUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -13,6 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,6 +34,8 @@ class PostServiceImplTest {
     PostRepository postRepository;
     @Mock
     CommentService commentService;
+    @Mock
+    CustomerService customerService;
     @Spy
     PostMapper postMapper = Mappers.getMapper(PostMapper.class);
 
@@ -52,6 +59,7 @@ class PostServiceImplTest {
         assertThat(saved).isEqualTo(postDto);
     }
 
+    //TODO FIX TEST
     @Test
     void update() {
         //given
@@ -95,5 +103,29 @@ class PostServiceImplTest {
         then(commentService).should().save(commentDto);
         post.getComments().add(comment);
         assertThat(added).isEqualTo(postMapper.postToPostDto(post));
+    }
+
+    @Test
+    void likePost() {
+        //given
+        Post post = new Post();
+        Set<Customer> likes = new HashSet<>();
+        likes.add(new Customer());
+        likes.add(new Customer());
+        post.setId(1L);
+        post.setLikes(likes);
+        Customer authCustomer = Customer.builder().username("AuthenticatedCustomer").build();
+        given(postRepository.findById(1L)).willReturn(Optional.of(post));
+        given(customerService.getAuthenticatedCustomer()).willReturn(authCustomer);
+
+        //when
+        PostDto likedPost = postService.likePost(1L);
+
+        //then
+        then(postRepository).should().findById(1L);
+        then(customerService).should().getAuthenticatedCustomer();
+        post.getLikes().add(authCustomer);
+        assertThat(likedPost).isEqualTo(postMapper.postToPostDto(post));
+
     }
 }

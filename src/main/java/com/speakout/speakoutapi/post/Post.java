@@ -10,6 +10,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,12 +24,14 @@ public class Post extends BaseEntity {
     private Customer author;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
-    private Integer likes;
+    @OneToMany(mappedBy = "post")
+    private Set<Customer> likes;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Post post = (Post) o;
         return Objects.equals(content, post.content) &&
                 Objects.equals(author, post.author) &&
@@ -38,6 +41,6 @@ public class Post extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(content, author, comments, likes);
+        return Objects.hash(super.hashCode(), content, author, comments, likes);
     }
 }

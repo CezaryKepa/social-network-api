@@ -4,7 +4,6 @@ import com.speakout.speakoutapi.comment.Comment;
 import com.speakout.speakoutapi.comment.CommentDto;
 import com.speakout.speakoutapi.comment.CommentService;
 import com.speakout.speakoutapi.customer.Customer;
-import com.speakout.speakoutapi.customer.CustomerDto;
 import com.speakout.speakoutapi.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

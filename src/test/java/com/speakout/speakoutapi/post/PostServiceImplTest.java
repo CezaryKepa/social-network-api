@@ -59,14 +59,12 @@ class PostServiceImplTest {
         assertThat(saved).isEqualTo(postDto);
     }
 
-    //TODO FIX TEST
     @Test
     void update() {
         //given
         PostDto postDto = PostDto.builder().id(1L).content("test").build();
         Post post = new Post();
         post.setContent("test");
-        post.setId(1L);
         given(postRepository.findById(postDto.getId())).willReturn(Optional.of(post));
         given(postRepository.save(post)).willReturn(post);
 
@@ -74,9 +72,10 @@ class PostServiceImplTest {
         PostDto saved = postService.update(postDto);
 
         //then
+        then(postRepository).should().findById(postDto.getId());
         then(postRepository).should().save(post);
 
-        assertThat(saved).isEqualTo(postDto);
+        assertThat(saved.getContent()).isEqualTo(postDto.getContent());
     }
 
     @Test

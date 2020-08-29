@@ -6,6 +6,7 @@ import com.speakout.speakoutapi.customer.Customer;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Getter
@@ -20,6 +21,7 @@ public class Comment extends BaseEntity {
     @ManyToOne
     private Customer author;
     private String content;
-    private Integer likes;
+    @OneToMany(mappedBy = "post")
+    private Set<Customer> likes;
 
 }

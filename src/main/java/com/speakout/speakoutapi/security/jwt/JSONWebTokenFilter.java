@@ -25,7 +25,7 @@ import static com.speakout.speakoutapi.security.SecurityConstants.*;
 
 
 public class JSONWebTokenFilter extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public JSONWebTokenFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;

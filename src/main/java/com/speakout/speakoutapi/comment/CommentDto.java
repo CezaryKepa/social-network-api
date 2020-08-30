@@ -14,15 +14,15 @@ import java.util.Set;
 public class CommentDto extends BaseItem {
     private Long postId;
     private String content;
-    private Long authorId;
+    private String authorUsername;
     private Set<CustomerDto> likes;
 
     @Builder
-    public CommentDto(Long id, OffsetDateTime createdAt, OffsetDateTime updatedAt, Long postId, String content, Long authorId, Set<CustomerDto> likes) {
+    public CommentDto(Long id, OffsetDateTime createdAt, OffsetDateTime updatedAt, Long postId, String content, String authorUsername, Set<CustomerDto> likes) {
         super(id, createdAt, updatedAt);
         this.postId = postId;
         this.content = content;
-        this.authorId = authorId;
+        this.authorUsername = authorUsername;
         this.likes = likes;
     }
 }

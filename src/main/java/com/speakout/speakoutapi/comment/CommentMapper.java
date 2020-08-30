@@ -13,7 +13,7 @@ import java.time.ZoneOffset;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 @MapperConfig(uses = CustomerMapper.class)
 public interface CommentMapper {
-    @Mapping(source = "author.id", target = "authorId")
+    @Mapping(source = "author.username", target = "authorUsername")
     CommentDto commentToCommentDto(Comment comment);
     Comment commentDtoToComment(CommentDto commentDto);
 

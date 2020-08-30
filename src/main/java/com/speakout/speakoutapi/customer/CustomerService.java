@@ -8,4 +8,5 @@ public interface CustomerService {
     List<CustomerDto> startObservingCustomer(String username);
     List<CustomerDto> stopObservingCustomer(String username);
     Customer getAuthenticatedCustomer();
+    Customer findCustomerByUsername(String username);
 }

@@ -21,7 +21,7 @@ public class Comment extends BaseEntity {
     @ManyToOne
     private Customer author;
     private String content;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "comment")
     private Set<Customer> likes;
 
 }

@@ -23,7 +23,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment save(CommentDto commentDto) {
-        return mapAndSaveComment(commentDto);
+        Comment commentEntity = commentMapper.commentDtoToComment(commentDto);
+        Customer author = customerService.findCustomerByUsername(commentDto.getAuthorUsername());
+        commentEntity.setAuthor(author);
+        return  commentRepository.save(commentEntity);
     }
 
     @Override
@@ -36,8 +39,4 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.commentToCommentDto(comment);
     }
 
-    private Comment mapAndSaveComment(CommentDto comment) {
-        Comment commentEntity = commentMapper.commentDtoToComment(comment);
-        return  commentRepository.save(commentEntity);
-    }
 }

@@ -78,7 +78,8 @@ public class CustomerServiceImpl implements CustomerService {
         return userEntity.getCustomer();
     }
 
-    Customer findCustomerByUsername(String username){
+    @Overrided
+    public Customer findCustomerByUsername(String username){
         Optional<Customer> observed = customerRepository.findByUsername(username);
         return observed.orElseThrow(CustomerNotFoundException::new);
     }

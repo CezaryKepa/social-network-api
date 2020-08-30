@@ -100,7 +100,6 @@ class PostServiceImplTest {
         //then
         then(postRepository).should().findById(commentDto.getPostId());
         then(commentService).should().save(commentDto);
-        post.getComments().add(comment);
         assertThat(added).isEqualTo(postMapper.postToPostDto(post));
     }
 

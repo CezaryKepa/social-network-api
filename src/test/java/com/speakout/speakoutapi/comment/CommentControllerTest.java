@@ -36,7 +36,7 @@ class CommentControllerTest {
 
 
     @Test
-    void likeCommentRest() throws Exception {
+    void likeComment() throws Exception {
         given(commentService.likeComment(any())).willReturn(CommentDto.builder().content("test").build());
         mockMvc.perform(put("/api/comment/like/1"))
                 .andExpect(status().isOk())

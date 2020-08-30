@@ -1,7 +1,10 @@
 package com.speakout.speakoutapi.post;
 
+import com.speakout.speakoutapi.comment.CommentMapper;
+import com.speakout.speakoutapi.customer.CustomerMapper;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
 
 import java.sql.Timestamp;
@@ -9,6 +12,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@MapperConfig(uses = CommentMapper.class)
 public interface PostMapper {
 
     @Mapping(source = "author.id", target = "authorId")

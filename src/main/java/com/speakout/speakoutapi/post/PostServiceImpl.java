@@ -30,11 +30,16 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public PostDto save(PostDto postDto) {
-        return mapAndSavePost(postDto);
+        Post postEntity = postMapper.postDtoToPost(postDto);
+        Customer authenticatedCustomer = customerService.getAuthenticatedCustomer();
+        postEntity.setAuthor(authenticatedCustomer);
+        Post savedPost = postRepository.save(postEntity);
+        return postMapper.postToPostDto(savedPost);
     }
 
     @Override
     public PostDto update(PostDto postDto) {
+        //todo if for other users then author
         Optional<Post> postById = postRepository.findById(postDto.getId());
         if(postById.isEmpty())
             throw new PostNotFoundException();
